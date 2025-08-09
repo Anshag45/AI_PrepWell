@@ -10,15 +10,14 @@ const techIconBaseURL = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
 const normalizeTechName = (tech: string) => {
   const key = tech.toLowerCase().replace(/\.js$/, "").replace(/\s+/g, "");
-  return mappings[key as keyof typeof mappings];
+  return mappings[key as keyof typeof mappings] || key;
 };
 
 const checkIconExists = async (url: string) => {
   try {
     const response = await fetch(url, { method: "HEAD" });
-    return response.ok; // Returns true if the icon exists
-  }
-  catch {
+    return response.ok;
+  } catch {
     return false;
   }
 };
@@ -43,6 +42,7 @@ export const getTechLogos = async (techArray: string[]) => {
 };
 
 export const getRandomInterviewCover = () => {
+  if (!interviewCovers.length) return "/default-cover.png";
   const randomIndex = Math.floor(Math.random() * interviewCovers.length);
-  return `/covers${covers[randomIndex]}`;
+  return interviewCovers[randomIndex];
 };
