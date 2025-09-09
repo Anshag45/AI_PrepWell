@@ -1,12 +1,13 @@
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 
+// ✅ Correct import paths - using relative paths
 import {
     FormItem,
     FormLabel,
     FormControl,
     FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "./ui/form";
+import { Input } from "./ui/input";
 
 interface FormFieldProps<T extends FieldValues> {
     control: Control<T>;
